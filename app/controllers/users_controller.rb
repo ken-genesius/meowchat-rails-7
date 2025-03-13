@@ -15,6 +15,11 @@ class UsersController < ApplicationController
     render "chatrooms/index"
   end
 
+  def index
+    @users = User.all()
+    render json: @users.to_json
+  end
+
   private
   def get_name(user1, user2)
     users = [ user1, user2 ].sort

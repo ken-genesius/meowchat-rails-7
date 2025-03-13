@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  resources :users, only: [ :index ]
+
   get "user/:id", to: "users#show", as: "user"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
