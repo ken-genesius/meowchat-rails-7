@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
-  devise_for :users
   root "home#index"
+
+  devise_for :users
+
+  resources :chatrooms do
+    resources :messages
+  end
+
+  get "user/:id", to: "users#show", as: "user"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
