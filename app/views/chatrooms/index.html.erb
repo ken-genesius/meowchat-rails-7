@@ -16,7 +16,7 @@
     <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
         <% if @single_chatroom %>
             <div id="single_chatroom">
-                <h4 class="text-center"><%= @user&.user_name || @single_chatroom.name %></h4>
+                <h4 class="text-center"><%= @user&.username || @single_chatroom.name %></h4>
                 <%= turbo_stream_from @single_chatroom %>
                 <div id="messages" data-controller="scroll">
                     <%= render @messages %>
