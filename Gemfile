@@ -19,6 +19,8 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
+gem "rack-cors"
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
@@ -39,6 +41,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem "sqlite3", ">= 1.4"
+
+  gem "rspec-rails", "~> 7.0.0"
+  gem "rswag", "~> 2.16"
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
