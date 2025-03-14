@@ -1,28 +1,44 @@
-<div id="chatroom_container" class="row bg-dark text-light">
-    <div id="side_panel" class="col-md-4 col-sm-4">
-        <h5><%= current_user.username %></h5>
-        <h4> User </h4>
-        <%= turbo_stream_from "users" %>
-        <div id="users">
-            <%= render @users %>
+<div id="chatroom_container" class="meowchat_container">
+    <div id="side_panel" class="meowchat_list">
+        <div class="meowchat_userInfo">
+            <div class="user">
+                <img src="" alt="" />
+                <h2><%= current_user.username %></h2>
+            </div>
+            <%= link_to 'Sign Out', destroy_user_session_path, data: {turbo_method: :delete}, class:"btn btn-danger", style:"justify-content: flex-end" %>
         </div>
-        <h4> Chatrooms </h4>
-        <%= render 'chatrooms/new_chatroom_form' %>
-        <%= turbo_stream_from "chatrooms" %>
-        <div id="chatrooms">
-            <%= render @chatrooms %>
+        <div class="chatList">
+            <h4 style="margin-top: 20px;text-align: center;"> Chatrooms </h4>
+                <%= render 'chatrooms/new_chatroom_form' %>
+                <%= turbo_stream_from "chatrooms" %>
+                <div id="chatrooms">
+                    <%= render @chatrooms %>
+                </div>
+            <h4 style="margin-top: 20px;text-align: center;"> User </h4>
+            <%= turbo_stream_from "users" %>
+            <div id="users">
+                <%= render @users %>
+            </div>
         </div>
     </div>
-    <div id="room_container" class="col-md-8 col-sm-8 bg-dark text-light">
+    <div id="room_container" class="meow_chat">
         <% if @single_chatroom %>
-            <div id="single_chatroom">
-                <h4 class="text-center"><%= @user&.username || @single_chatroom.name %></h4>
-                <%= turbo_stream_from @single_chatroom %>
-                <div id="messages" data-controller="scroll">
-                    <%= render @messages %>
+        <div class="top">
+            <div id="single_chatroom" class="user">
+                <img src="./avatar.png" alt="" />
+                <div class="texts">
+                    <h4 class="text-center"><%= @user&.username || @single_chatroom.name %></h4>
                 </div>
-                <%= render 'messages/new_message_form'%>
             </div>
+        </div>
+        <%= turbo_stream_from @single_chatroom %>
+        <div id="messages" data-controller="scroll" class="center">
+            <%= render @messages %>
+        </div>
+        <div>
+            <%= render 'messages/new_message_form'%>
+        </div>
         <% end %>
+
     </div>
 </div>
