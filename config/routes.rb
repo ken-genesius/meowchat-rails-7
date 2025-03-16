@@ -8,6 +8,19 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      resources :chatrooms, only: [ :index, :create ]
+      resources :messages, only: [ :create ]
+      post "/log_in", to: "users#login"
+      post "/sign_up", to: "users#sign_up"
+      post "/initiate_chatroom", to: "chatrooms#initiate_chatroom"
+    end
+  end
+
+  resources :users, only: [ :index ]
+
   get "user/:id", to: "users#show", as: "user"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -17,8 +30,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Render dynamic PWA files from app/views/pwa/*
-  get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
   # Defines the root path route ("/")
   # root "posts#index"
