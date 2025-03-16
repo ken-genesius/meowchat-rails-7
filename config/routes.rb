@@ -8,6 +8,17 @@ Rails.application.routes.draw do
     resources :messages
   end
 
+  namespace :api do
+    namespace :v1 do
+      resources :users
+      resources :chatrooms, only: [ :index, :create ]
+      resources :messages, only: [ :create ]
+      post "/log_in", to: "users#login"
+      post "/sign_up", to: "users#sign_up"
+      post "/initiate_chatroom", to: "chatrooms#initiate_chatroom"
+    end
+  end
+
   resources :users, only: [ :index ]
 
   get "user/:id", to: "users#show", as: "user"
