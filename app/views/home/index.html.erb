@@ -2,12 +2,19 @@
     <div class="item">
         <h2>Welcome to MeowChat</h2>
         <div class="meow_list_button">
-        <% if current_user %>
-        <%= link_to "Start Chatting", chatrooms_path, class:"btn btn-primary" %>
-        <%= link_to 'Sign Out', destroy_user_session_path, data: {turbo_method: :delete}, class:"nav-link" %>
-        <% else %>
-        <%= link_to "Log In", new_user_session_path, class:"btn btn-primary"  %>
-        <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
-        <% end %>
+            <% if current_user %>
+            <%= link_to "Start Chatting", chatrooms_path, class:"btn btn-primary" %>
+            <%= link_to 'Sign Out', destroy_user_session_path, data: {turbo_method: :delete}, class:"nav-link" %>
+            <% else %>
+            <%= link_to "Log In", new_user_session_path, class:"btn btn-primary"  %>
+            <%= link_to "Sign Up", new_user_registration_path, class:"btn btn-primary" %>
+            <% end %>
         </div>
     </div>
+    <div class="item">
+        <h2>Updated React Web!</h2>
+        <div class="meow_list_button">
+            <%= link_to "React Website", "https://meowchat-fe-vg3t2.ondigitalocean.app", class:"btn btn-primary" %>
+        </div>
+    </div>
+</div>
